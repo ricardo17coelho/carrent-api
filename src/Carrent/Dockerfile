@@ -1,0 +1,22 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["src/Carrent/Carrent.csproj", "src/Carrent/"]
+RUN dotnet restore "src/Carrent/Carrent.csproj"
+COPY . .
+WORKDIR "/src/src/Carrent"
+RUN dotnet build "Carrent.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Carrent.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Carrent.dll"]
