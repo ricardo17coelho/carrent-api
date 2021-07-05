@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{84CA2C48
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carrent", "src\Carrent\Carrent.csproj", "{80D38ECC-E06E-418C-9E6A-1D50CC8D55AB}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6C7C6176-5DE4-4BFE-B6D2-BFEC3E814258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carrent.Tests", "Carrent.Tests\Carrent.Tests.csproj", "{AA55F1E9-8632-4461-9774-231DD09C1ABB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +23,21 @@ Global
 		{80D38ECC-E06E-418C-9E6A-1D50CC8D55AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80D38ECC-E06E-418C-9E6A-1D50CC8D55AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80D38ECC-E06E-418C-9E6A-1D50CC8D55AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7C6176-5DE4-4BFE-B6D2-BFEC3E814258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7C6176-5DE4-4BFE-B6D2-BFEC3E814258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7C6176-5DE4-4BFE-B6D2-BFEC3E814258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7C6176-5DE4-4BFE-B6D2-BFEC3E814258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA55F1E9-8632-4461-9774-231DD09C1ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA55F1E9-8632-4461-9774-231DD09C1ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA55F1E9-8632-4461-9774-231DD09C1ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA55F1E9-8632-4461-9774-231DD09C1ABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{80D38ECC-E06E-418C-9E6A-1D50CC8D55AB} = {72FA5B7C-1579-4A51-B869-84D97972E095}
+		{AA55F1E9-8632-4461-9774-231DD09C1ABB} = {84CA2C48-3B6C-49D3-9693-E2C5B025AE31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49822284-E49A-4F7B-8F7C-B9A56FD8CFFB}
