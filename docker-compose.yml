@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: carrent-mssql-db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=1Secure*Password1
+    ports:
+      - 1433:1433
+    networks:
+      - webnet
+
+  carrent:
+    image: ${DOCKER_REGISTRY-}carrent
+    container_name: carrent-api
+    build:
+      context: .
+      dockerfile: src/Carrent/Dockerfile
+    depends_on:
+      - db
+    networks:
+      - webnet
+  
+networks:
+  webnet:
+    driver: bridge
