@@ -39,6 +39,7 @@ namespace Carrent
                 Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
                 config.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddControllers();
 
             services.AddTransient<ICarService, CarService>();
             services.AddScoped<IRepository<Car, Guid>, CarRepository>();
@@ -58,6 +59,18 @@ namespace Carrent
                     Contact = new OpenApiContact { Name = "Ricardo Coelho", Email = "devel@rmorgado.ch" }
                 });
             });
+
+            // VARIANT 1
+            //services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            //{
+            //    builder.AllowAnyOrigin()
+            //           .AllowAnyMethod()
+            //           .AllowAnyHeader();
+            //}));
+            //services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            // VARIANT 2
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +83,8 @@ namespace Carrent
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Carrent v1"));
             }
 
+            //carRentDbContext.Database.EnsureCreated();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -80,6 +95,26 @@ namespace Carrent
             {
                 endpoints.MapControllers();
             });
+
+            // Make sure you call this before calling app.UseMvc()
+            //app.UseCors(
+            //    options => options.WithOrigins("localhost:8080").AllowAnyMethod()
+            //);
+            //app.UseMvc();
+
+            // VARIANT 1
+            //app.UseCors("MyPolicy");
+            //app.UseMvc();
+
+            // VARIANT 2
+            //https://jasonwatmore.com/post/2020/05/20/aspnet-core-api-allow-cors-requests-from-any-origin-and-with-credentials
+            // global cors policy
+            //app.UseCors(x => x
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    .SetIsOriginAllowed(origin => true) // allow any origin
+            //    .AllowCredentials()); // allow credentials
+
 
             //run all migrations
             carRentDbContext.Database.Migrate();
