@@ -17,7 +17,7 @@ services:
     container_name: dev-carrent-api
     build:
       context: .
-      dockerfile: src/Carrent/Dockerfile
+      dockerfile: src/Carrent/Dockerfile.dev
     depends_on:
       - db
     networks:
