@@ -4,6 +4,9 @@ using Carrent.CarManagement.Infrastructure;
 using Carrent.Common.Context;
 using Carrent.Common.Interfaces;
 using Carrent.Common.Mapper;
+using Carrent.CustomerManagement.Application;
+using Carrent.CustomerManagement.Domain;
+using Carrent.CustomerManagement.Infrastructure;
 using Carrent.ZipCodeManagement.Application;
 using Carrent.ZipCodeManagement.Domain;
 using Carrent.ZipCodeManagement.Infrastructure;
@@ -44,6 +47,9 @@ namespace Carrent
             });
             services.AddControllers();
 
+            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddScoped<IRepository<Customer, Guid>, CustomerRepository>();
+
             services.AddTransient<IZipCodeService, ZipCodeService>();
             services.AddScoped<IRepository<ZipCode, Guid>, ZipCodeRepository>();
 
@@ -53,7 +59,7 @@ namespace Carrent
             services.AddTransient<ICarClassService, CarClassService>();
             services.AddScoped<IRepository<CarClass, Guid>, CarClassRepository>();
 
-            services.AddAutoMapper(typeof(CarProfile));
+            services.AddAutoMapper(typeof(CarProfile), typeof(CustomerProfile));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -89,8 +95,6 @@ namespace Carrent
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Carrent v1"));
             }
 
-            //carRentDbContext.Database.EnsureCreated();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -121,7 +125,7 @@ namespace Carrent
             //    .SetIsOriginAllowed(origin => true) // allow any origin
             //    .AllowCredentials()); // allow credentials
 
-
+            //carRentDbContext.Database.EnsureCreated();
             //run all migrations
             carRentDbContext.Database.Migrate();
         }
