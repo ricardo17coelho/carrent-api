@@ -4,6 +4,9 @@ using Carrent.CarManagement.Infrastructure;
 using Carrent.Common.Context;
 using Carrent.Common.Interfaces;
 using Carrent.Common.Mapper;
+using Carrent.ZipCodeManagement.Application;
+using Carrent.ZipCodeManagement.Domain;
+using Carrent.ZipCodeManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +43,9 @@ namespace Carrent
                 config.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
+
+            services.AddTransient<IZipCodeService, ZipCodeService>();
+            services.AddScoped<IRepository<ZipCode, Guid>, ZipCodeRepository>();
 
             services.AddTransient<ICarService, CarService>();
             services.AddScoped<IRepository<Car, Guid>, CarRepository>();
