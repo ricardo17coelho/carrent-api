@@ -46,7 +46,7 @@ namespace Carrent.CustomerManagement.Api
         }
 
         [HttpPost]
-        public void Post([FromBody] ICustomerCreateDto entity)
+        public void Post([FromBody] CustomerCreateDto entity)
         {
             var c = _mapper.Map<Customer>(entity);
             _service.Add(c);

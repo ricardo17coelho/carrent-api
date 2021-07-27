@@ -18,7 +18,7 @@ namespace Carrent.Common.Mapper
                 .ForMember(dest => dest.Zip, opt => opt.MapFrom(src => src.Zip.Zip))
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Zip.Country))
                 .ForMember(dest => dest.Place, opt => opt.MapFrom(src => src.Zip.Town));
-            CreateMap<CustomerResponseDto, Customer>()
+            CreateMap<CustomerCreateDto, Customer>()
                 .ForMember(dest => dest.Zip, opt => opt.Ignore());
 
             CreateMap<ZipCode, ZipCodeDto>();
