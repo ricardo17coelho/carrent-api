@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Carrent.CustomerManagement.Models
 {
-    public interface ICustomerDto
+    public class CustomerCreateDto
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
@@ -13,15 +13,7 @@ namespace Carrent.CustomerManagement.Models
         public Guid ZipId { get; set; }
     }
 
-    public class CustomerCreateDto : ICustomerDto
-    {
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Street { get; set; }
-        public Guid ZipId { get; set; }
-    }
-
-    public class CustomerEditDto : ICustomerDto
+    public class CustomerEditDto
     {
         public Guid Id { get; set; }
         public string Firstname { get; set; }
