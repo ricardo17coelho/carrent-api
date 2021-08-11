@@ -20,12 +20,12 @@ namespace Carrent.CustomerManagement.Infrastructure
 
         public List<Customer> GetAll()
         {
-            return _carRentDbContext.Customers.Include(x => x.Zip).ToList();
+            return _carRentDbContext.Customers.ToList();
         }
 
         public List<Customer> FindById(Guid id)
         {
-            return _carRentDbContext.Customers.Include(x => x.Zip).Where(x => x.Id.Equals(id)).ToList();
+            return _carRentDbContext.Customers.Where(x => x.Id.Equals(id)).ToList();
         }
 
         public void Insert(Customer entity)

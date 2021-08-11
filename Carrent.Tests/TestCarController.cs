@@ -88,9 +88,8 @@ namespace Carrent.Tests
         {
             var controller = new CarController(_service, _mapper);
 
-            var carToAdd = new CarDto()
+            var carToAdd = new CarRequestCreateDto()
             {
-                Id = Guid.NewGuid(),
                 Brand = "Hyundai",
                 ClassId = _luxuryClass.Id,
                 Type = "PW"

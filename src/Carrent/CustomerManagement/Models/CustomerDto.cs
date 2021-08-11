@@ -10,7 +10,9 @@ namespace Carrent.CustomerManagement.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Street { get; set; }
-        public Guid ZipId { get; set; }
+        public string Zip { get; set; }
+        public string Country { get; set; }
+        public string Town { get; set; }
     }
 
     public class CustomerRequestEditDto
@@ -19,7 +21,9 @@ namespace Carrent.CustomerManagement.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Street { get; set; }
-        public Guid ZipId { get; set; }
+        public string Zip { get; set; }
+        public string Country { get; set; }
+        public string Town { get; set; }
     }
     public class CustomerResponseDto
     {
@@ -27,9 +31,8 @@ namespace Carrent.CustomerManagement.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Street { get; set; }
-        public Guid ZipId { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
-        public string Place { get; set; }
+        public string Town { get; set; }
     }
 }

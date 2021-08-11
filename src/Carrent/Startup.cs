@@ -10,9 +10,6 @@ using Carrent.CustomerManagement.Infrastructure;
 using Carrent.ReservationManagement.Application;
 using Carrent.ReservationManagement.Domain;
 using Carrent.ReservationManagement.Infrastructure;
-using Carrent.ZipCodeManagement.Application;
-using Carrent.ZipCodeManagement.Domain;
-using Carrent.ZipCodeManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,9 +49,6 @@ namespace Carrent
 
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddScoped<IRepository<Customer, Guid>, CustomerRepository>();
-
-            services.AddTransient<IZipCodeService, ZipCodeService>();
-            services.AddScoped<IRepository<ZipCode, Guid>, ZipCodeRepository>();
 
             services.AddTransient<ICarService, CarService>();
             services.AddScoped<IRepository<Car, Guid>, CarRepository>();
