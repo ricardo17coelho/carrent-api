@@ -7,6 +7,9 @@ using Carrent.Common.Mapper;
 using Carrent.CustomerManagement.Application;
 using Carrent.CustomerManagement.Domain;
 using Carrent.CustomerManagement.Infrastructure;
+using Carrent.ReservationManagement.Application;
+using Carrent.ReservationManagement.Domain;
+using Carrent.ReservationManagement.Infrastructure;
 using Carrent.ZipCodeManagement.Application;
 using Carrent.ZipCodeManagement.Domain;
 using Carrent.ZipCodeManagement.Infrastructure;
@@ -59,7 +62,10 @@ namespace Carrent
             services.AddTransient<ICarClassService, CarClassService>();
             services.AddScoped<IRepository<CarClass, Guid>, CarClassRepository>();
 
-            services.AddAutoMapper(typeof(CarProfile), typeof(CustomerProfile));
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddScoped<IRepository<Reservation, Guid>, ReservationRepository>();
+
+            services.AddAutoMapper(typeof(CarProfile), typeof(CustomerProfile), typeof(ReservationProfile));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -1,5 +1,6 @@
 ﻿using Carrent.CarManagement.Domain;
 using Carrent.CustomerManagement.Domain;
+using Carrent.ReservationManagement.Domain;
 using Carrent.ZipCodeManagement.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,7 @@ namespace Carrent.Common.Context
         public DbSet<CarClass> CarClasses { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ZipCode> ZipCodes { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +27,7 @@ namespace Carrent.Common.Context
             //ConfigureModelBinding<CarClass, Guid>(modelBuilder);
             ConfigureModelBinding<Customer, Guid>(modelBuilder);
             ConfigureModelBinding<ZipCode, Guid>(modelBuilder);
+            ConfigureModelBinding<Reservation, Guid>(modelBuilder);
 
             List<CarClass> carClasses = new List<CarClass>
             {
