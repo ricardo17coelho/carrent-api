@@ -25,15 +25,15 @@ namespace Carrent.CarManagement.Api
         }
 
         [HttpGet]
-        public List<CarClassDto> Get()
+        public List<CarClassResponseDto> Get()
         {
-            return _service.GetAll().Select(car => _mapper.Map<CarClassDto>(car)).ToList();
+            return _service.GetAll().Select(car => _mapper.Map<CarClassResponseDto>(car)).ToList();
         }
 
         [HttpGet("{id}")]
-        public List<CarClassDto> Get(Guid id)
+        public List<CarClassResponseDto> Get(Guid id)
         {
-            return _service.GetById(id).Select(car => _mapper.Map<CarClassDto>(car)).ToList();
+            return _service.GetById(id).Select(car => _mapper.Map<CarClassResponseDto>(car)).ToList();
         }
         /// <summary>
         /// </summary>
@@ -46,14 +46,14 @@ namespace Carrent.CarManagement.Api
         /// </remarks>
         /// <param name="entity"></param>
         [HttpPost]
-        public void Post([FromBody] CarClassDto entity)
+        public void Post([FromBody] CarClassRequestCreateDto entity)
         {
             var c = _mapper.Map<CarClass>(entity);
             _service.Add(c);
         }
 
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] CarClassDto entity)
+        public void Put(Guid id, [FromBody] CarClassRequestEditDto entity)
         {
             entity.Id = id;
             var c = _mapper.Map<CarClass>(entity);

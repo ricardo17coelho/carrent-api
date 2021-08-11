@@ -18,9 +18,10 @@ namespace Carrent.Common.Mapper
 
             CreateMap<CarRequestCreateDto, Car>().ForMember(dest => dest.Class, opt => opt.Ignore());
 
-            CreateMap<CarClass, CarClassDto>();
+            CreateMap<CarClass, CarClassResponseDto>();
 
-            CreateMap<CarClassDto, CarClass>();
+            CreateMap<CarClassRequestEditDto, CarClass>();
+            CreateMap<CarClassRequestCreateDto, CarClass>();
         }
     }
 }
