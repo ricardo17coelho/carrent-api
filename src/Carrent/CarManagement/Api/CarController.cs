@@ -43,37 +43,37 @@ namespace Carrent.CarManagement.Api
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         [HttpGet]
-        public List<CarDto> Get()
+        public List<CarResponseDto> Get()
         {
-            return _carService.GetAll().Select(car => _mapper.Map<CarDto>(car)).ToList();
+            return _carService.GetAll().Select(car => _mapper.Map<CarResponseDto>(car)).ToList();
         }
 
         /// <summary>
         /// Get car by id
         /// </summary>
         [HttpGet("{id}")]
-        public List<CarDto> Get(Guid id)
+        public List<CarResponseDto> Get(Guid id)
         {
-            return _carService.GetById(id).Select(car => _mapper.Map<CarDto>(car)).ToList();
+            return _carService.GetById(id).Select(car => _mapper.Map<CarResponseDto>(car)).ToList();
         }
 
         [HttpGet("search/{searchTerm}")]
-        public List<CarDto> Search(string searchTerm)
+        public List<CarResponseDto> Search(string searchTerm)
         {
             return _carService.GetAll()
                 .Where(x => x.Brand.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) || x.Type.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase))
-                .Select(x => _mapper.Map<CarDto>(x)).ToList();
+                .Select(x => _mapper.Map<CarResponseDto>(x)).ToList();
         }
 
         [HttpPost]
-        public void Post([FromBody] CarDto car)
+        public void Post([FromBody] CarRequestCreateDto car)
         {
             var carMapped = _mapper.Map<Car>(car);
             _carService.Add(carMapped);
         }
 
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] CarDto car)
+        public void Put(Guid id, [FromBody] CarRequestEditDto car)
         {
             var c = _mapper.Map<Car>(car);
             _carService.Update(c);
