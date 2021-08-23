@@ -20,7 +20,7 @@ namespace Carrent.CarManagement.Infrastructure
 
         public List<Car> GetAll()
         {
-            return _carRentDbContext.Cars.Include(x => x.Class).ToList();
+            return _carRentDbContext.Cars.Include(c => c.Reservations).Include(x => x.Class).ToList();
         }
 
         public List<Car> FindById(Guid id)

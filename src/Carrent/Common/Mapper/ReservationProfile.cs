@@ -15,7 +15,11 @@ namespace Carrent.Common.Mapper
             CreateMap<Reservation, ReservationResponseDto>()
                 .ForMember(dest => dest.CarName, opt => opt.MapFrom(src => src.Car.Brand + ' ' + src.Car.Class.Type))
                 .ForMember(dest => dest.CustomerFullName, opt => opt.MapFrom(src => src.Customer.Firstname + ' ' + src.Customer.Lastname))
-                .AfterMap((src, dest) => dest.TotalCost = src.TotalDays * src.Car.Class.PricePerDay);
+                .AfterMap((src, dest) => {
+                    var PricePerDay = src.Car.Class.PricePerDay;
+                    //var PricePerDay = 10;
+                    dest.TotalCost = src.TotalDays * PricePerDay;
+                });
 
             CreateMap<ReservationRequestCreateDto, Reservation>()
                 .ForMember(dest => dest.Car, opt => opt.Ignore())

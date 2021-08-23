@@ -1,4 +1,5 @@
 ﻿using Carrent.Common;
+using Carrent.ReservationManagement.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,6 @@ namespace Carrent.CarManagement.Api
         public string Class { get; set; }
         public Guid ClassId { get; set; }
         public decimal PricePerDay { get; set; }
+        public ReservationStatus Status { get; set; }
     }
 }

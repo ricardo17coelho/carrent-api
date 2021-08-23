@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carrent.ReservationManagement.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace Carrent.CarManagement.Domain
         public string Brand { get; set; }
         [Required]
         public string Type { get; set; }
+        public virtual ICollection<Reservation> Reservations {get; set;}
     }
 }
