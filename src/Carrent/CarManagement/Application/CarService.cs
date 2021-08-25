@@ -35,9 +35,9 @@ namespace Carrent.CarManagement.Application
         {
             _repository.Remove(id);
         }
-        public void Delete(Car entity)
+        public void Delete(Car car)
         {
-            _repository.Remove(entity);
+            _repository.Remove(car);
         }
         public void Update(Car car)
         {

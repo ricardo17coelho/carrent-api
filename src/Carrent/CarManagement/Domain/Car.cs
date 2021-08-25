@@ -22,6 +22,11 @@ namespace Carrent.CarManagement.Domain
         [Required]
         public Guid TypeId { get; set; }
         public CarType Type { get; set; }
+        [Required]
+        public string Model { get; set; }
+        public long Kilometers { get; set; }
+        public int HorsePower { get; set; }
+        public int RegistrationYear { get; set; }
         public virtual ICollection<Reservation> Reservations {get; set;}
     }
 }

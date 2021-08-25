@@ -12,6 +12,10 @@ namespace Carrent.CarManagement.Api
         public Guid BrandId { get; set; }
         public Guid TypeId { get; set; }
         public Guid ClassId { get; set; }
+        public string Model { get; set; }
+        public long Kilometers { get; set; }
+        public int HorsePower { get; set; }
+        public int RegistrationYear { get; set; }
     }
 
     public class CarRequestEditDto
@@ -20,6 +24,10 @@ namespace Carrent.CarManagement.Api
         public Guid BrandId { get; set; }
         public Guid TypeId { get; set; }
         public Guid ClassId { get; set; }
+        public string Model { get; set; }
+        public long Kilometers { get; set; }
+        public int HorsePower { get; set; }
+        public int RegistrationYear { get; set; }
     }
 
     public class CarResponseDto
@@ -32,6 +40,10 @@ namespace Carrent.CarManagement.Api
         public string Class { get; set; }
         public Guid ClassId { get; set; }
         public decimal PricePerDay { get; set; }
+        public string Model { get; set; }
+        public long Kilometers { get; set; }
+        public int HorsePower { get; set; }
+        public int RegistrationYear { get; set; }
         public ReservationStatus Status { get; set; }
     }
 }
