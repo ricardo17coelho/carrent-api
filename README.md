@@ -33,6 +33,16 @@
 [![MIT License][license-shield]][license-url]
 
 
+## **Quality Gate**
+
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=ncloc)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=security_rating)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=bugs)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ricardo17coelho_carrent-api&metric=coverage)](https://sonarcloud.io/dashboard?id=ricardo17coelho_carrent-api)
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
