@@ -21,9 +21,9 @@ namespace Carrent.BaseData.CarClassManagement.Infrastructure
             return _carRentDbContext.CarClasses.ToList();
         }
 
-        public List<CarClass> FindById(Guid id)
+        public CarClass FindById(Guid id)
         {
-            return _carRentDbContext.CarClasses.Where(x => x.Id.Equals(id)).ToList();
+            return _carRentDbContext.CarClasses.Where(x => x.Id.Equals(id)).FirstOrDefault(c => c.Id == id);
         }
 
         public void Insert(CarClass entity)
@@ -40,7 +40,7 @@ namespace Carrent.BaseData.CarClassManagement.Infrastructure
 
         public void Remove(Guid id)
         {
-            Remove(FindById(id).FirstOrDefault());
+            Remove(FindById(id));
         }
 
         public void Remove(CarClass entity)

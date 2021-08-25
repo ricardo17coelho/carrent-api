@@ -17,9 +17,9 @@ namespace Carrent.BaseData.CarTypeManagement.Infrastructure
             _carRentDbContext = carRentDbContext;
         }
 
-        public List<CarType> FindById(Guid id)
+        public CarType FindById(Guid id)
         {
-            return _carRentDbContext.CarTypes.Where(brand => brand.Id.Equals(id)).ToList();
+            return _carRentDbContext.CarTypes.Where(brand => brand.Id.Equals(id)).FirstOrDefault(c => c.Id == id);
         }
 
         public List<CarType> GetAll()
@@ -35,7 +35,7 @@ namespace Carrent.BaseData.CarTypeManagement.Infrastructure
 
         public void Remove(Guid id)
         {
-            Remove(FindById(id).FirstOrDefault());
+            Remove(FindById(id));
         }
 
         public void Remove(CarType entity)

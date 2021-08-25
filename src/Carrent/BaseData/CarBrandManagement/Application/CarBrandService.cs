@@ -33,7 +33,7 @@ namespace Carrent.BaseData.CarBrandManagement.Application
             return _repository.GetAll();
         }
 
-        public List<CarBrand> GetById(Guid id)
+        public CarBrand GetById(Guid id)
         {
             return _repository.FindById(id);
         }

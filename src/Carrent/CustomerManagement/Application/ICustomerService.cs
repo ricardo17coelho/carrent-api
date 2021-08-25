@@ -10,7 +10,7 @@ namespace Carrent.CustomerManagement.Application
     {
         List<Customer> GetAll();
 
-        List<Customer> GetById(Guid id);
+        Customer GetById(Guid id);
 
         void Add(Customer entity);
 

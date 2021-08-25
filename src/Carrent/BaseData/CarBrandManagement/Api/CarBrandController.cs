@@ -31,9 +31,10 @@ namespace Carrent.BaseData.CarBrandManagement.Api
         }
 
         [HttpGet("{id}")]
-        public List<CarBrandRequestEditDto> Get(Guid id)
+        public CarBrandRequestEditDto Get(Guid id)
         {
-            return _service.GetById(id).Select(carBrand => _mapper.Map<CarBrandRequestEditDto>(carBrand)).ToList();
+            CarBrand carBrand = _service.GetById(id);
+            return _mapper.Map<CarBrandRequestEditDto>(carBrand);
         }
 
         [HttpPost]

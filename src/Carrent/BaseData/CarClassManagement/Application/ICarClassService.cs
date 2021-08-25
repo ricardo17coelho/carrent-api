@@ -8,7 +8,7 @@ namespace Carrent.BaseData.CarClassManagement.Application
     {
         List<CarClass> GetAll();
 
-        List<CarClass> GetById(Guid id);
+        CarClass GetById(Guid id);
 
         void Add(CarClass carClass);
 

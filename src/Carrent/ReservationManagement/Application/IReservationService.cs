@@ -10,7 +10,7 @@ namespace Carrent.ReservationManagement.Application
     {
         List<Reservation> GetAll();
 
-        List<Reservation> GetById(Guid id);
+        Reservation GetById(Guid id);
 
         void Add(Reservation entity);
 

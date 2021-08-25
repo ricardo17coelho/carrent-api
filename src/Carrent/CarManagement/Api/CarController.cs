@@ -52,9 +52,10 @@ namespace Carrent.CarManagement.Api
         /// Get car by id
         /// </summary>
         [HttpGet("{id}")]
-        public List<CarResponseDto> Get(Guid id)
+        public CarResponseDto Get(Guid id)
         {
-            return _carService.GetById(id).Select(car => _mapper.Map<CarResponseDto>(car)).ToList();
+            Car car = _carService.GetById (id);
+            return _mapper.Map<CarResponseDto>(car);
         }
 
         [HttpGet("search/{searchTerm}")]

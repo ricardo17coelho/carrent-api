@@ -21,7 +21,7 @@ namespace Carrent.CustomerManagement.Application
             return _repository.GetAll();
         }
 
-        public List<Customer> GetById(Guid id)
+        public Customer GetById(Guid id)
         {
             return _repository.FindById(id);
         }

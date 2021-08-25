@@ -23,9 +23,9 @@ namespace Carrent.CustomerManagement.Infrastructure
             return _carRentDbContext.Customers.ToList();
         }
 
-        public List<Customer> FindById(Guid id)
+        public Customer FindById(Guid id)
         {
-            return _carRentDbContext.Customers.Where(x => x.Id.Equals(id)).ToList();
+            return _carRentDbContext.Customers.Where(x => x.Id.Equals(id)).FirstOrDefault(c => c.Id == id);
         }
 
         public void Insert(Customer entity)
@@ -42,7 +42,7 @@ namespace Carrent.CustomerManagement.Infrastructure
 
         public void Remove(Guid id)
         {
-            Remove(FindById(id).FirstOrDefault());
+            Remove(FindById(id));
         }
 
         public void Remove(Customer entity)

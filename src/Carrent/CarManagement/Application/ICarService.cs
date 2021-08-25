@@ -9,7 +9,7 @@ namespace Carrent.CarManagement.Application
     public interface ICarService
     {
         List<Car> GetAll();
-        List<Car> GetById(Guid id);
+        Car GetById(Guid id);
         List<Car> GetByType(string type);
         void Add(Car car);
         void DeleteById(Guid id);

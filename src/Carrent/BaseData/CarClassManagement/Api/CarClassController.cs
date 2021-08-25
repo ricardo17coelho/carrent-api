@@ -30,9 +30,10 @@ namespace Carrent.BaseData.CarClassManagement.Api
         }
 
         [HttpGet("{id}")]
-        public List<CarClassResponseDto> Get(Guid id)
+        public CarClassResponseDto Get(Guid id)
         {
-            return _service.GetById(id).Select(car => _mapper.Map<CarClassResponseDto>(car)).ToList();
+            CarClass carClass = _service.GetById(id);
+            return _mapper.Map<CarClassResponseDto>(carClass);
         }
         /// <summary>
         /// </summary>

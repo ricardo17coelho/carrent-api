@@ -21,7 +21,7 @@ namespace Carrent.ReservationManagement.Application
             return _repository.GetAll();
         }
 
-        public List<Reservation> GetById(Guid id)
+        public Reservation GetById(Guid id)
         {
             return _repository.FindById(id);
         }

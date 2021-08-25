@@ -32,9 +32,10 @@ namespace Carrent.CustomerManagement.Api
         }
 
         [HttpGet("{id}")]
-        public List<CustomerResponseDto> Get(Guid id)
+        public CustomerResponseDto Get(Guid id)
         {
-            return _service.GetById(id).Select(entity => _mapper.Map<CustomerResponseDto>(entity)).ToList();
+            Customer reservation = _service.GetById(id);
+            return _mapper.Map<CustomerResponseDto>(reservation);
         }
 
         [HttpGet("search/{searchTerm}")]

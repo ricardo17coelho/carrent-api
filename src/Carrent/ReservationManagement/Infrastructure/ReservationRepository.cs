@@ -23,9 +23,12 @@ namespace Carrent.ReservationManagement.Infrastructure
             return _carRentDbContext.Reservations.Include(x => x.Car).ThenInclude(c => c.Class).Include(x => x.Customer).ToList();
         }
 
-        public List<Reservation> FindById(Guid id)
+        public Reservation FindById(Guid id)
         {
-            return _carRentDbContext.Reservations.Include(x => x.Car).Include(x => x.Customer).Where(x => x.Id.Equals(id)).ToList();
+            return _carRentDbContext.Reservations
+                .Include(x => x.Car)
+                .Include(x => x.Customer).Where(x => x.Id.Equals(id))
+                .FirstOrDefault(c => c.Id == id);
         }
 
         public void Insert(Reservation entity)
@@ -42,7 +45,7 @@ namespace Carrent.ReservationManagement.Infrastructure
 
         public void Remove(Guid id)
         {
-            Remove(FindById(id).FirstOrDefault());
+            Remove(FindById(id));
         }
 
         public void Remove(Reservation entity)

@@ -19,7 +19,7 @@ namespace Carrent.CarManagement.Application
         {
             return _repository.GetAll();
         }
-        public List<Car> GetById(Guid id)
+        public Car GetById(Guid id)
         {
             return _repository.FindById(id);
         }

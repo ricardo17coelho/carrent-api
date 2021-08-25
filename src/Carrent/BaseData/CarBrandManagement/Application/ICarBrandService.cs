@@ -9,7 +9,7 @@ namespace Carrent.BaseData.CarBrandManagement.Application
     public interface ICarBrandService
     {
         List<CarBrand> GetAll();
-        List<CarBrand> GetById(Guid id);
+        CarBrand GetById(Guid id);
         void Add(CarBrand carBrand);
         void DeleteById(Guid id);
         void Delete(CarBrand carBrand);

@@ -35,7 +35,7 @@ namespace Carrent.BaseData.CarTypesManagement.Application
             return _repository.GetAll();
         }
 
-        public List<CarType> GetById(Guid id)
+        public CarType GetById(Guid id)
         {
             return _repository.FindById(id);
         }

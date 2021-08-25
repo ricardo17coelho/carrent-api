@@ -30,9 +30,10 @@ namespace Carrent.BaseData.CarTypesManagement.Api
         }
 
         [HttpGet("{id}")]
-        public List<CarTypeRequestEditDto> Get(Guid id)
+        public CarTypeRequestEditDto Get(Guid id)
         {
-            return _service.GetById(id).Select(carType => _mapper.Map<CarTypeRequestEditDto>(carType)).ToList();
+            CarType carType = _service.GetById(id);
+            return _mapper.Map<CarTypeRequestEditDto>(carType);
         }
 
         [HttpPost]
