@@ -1,3 +1,9 @@
+using Carrent.BaseData.CarBrandManagement.Application;
+using Carrent.BaseData.CarBrandManagement.Domain;
+using Carrent.BaseData.CarBrandManagement.Infrastructure;
+using Carrent.BaseData.CarTypeManagement.Domain;
+using Carrent.BaseData.CarTypeManagement.Infrastructure;
+using Carrent.BaseData.CarTypesManagement.Application;
 using Carrent.CarManagement.Application;
 using Carrent.CarManagement.Domain;
 using Carrent.CarManagement.Infrastructure;
@@ -12,18 +18,12 @@ using Carrent.ReservationManagement.Domain;
 using Carrent.ReservationManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Carrent
 {
@@ -58,6 +58,12 @@ namespace Carrent
 
             services.AddTransient<IReservationService, ReservationService>();
             services.AddScoped<IRepository<Reservation, Guid>, ReservationRepository>();
+
+            services.AddTransient<ICarTypeService, CarTypeService>();
+            services.AddScoped<IRepository<CarType, Guid>, CarTypeRepository>();
+
+            services.AddTransient<ICarBrandService, CarBrandService>();
+            services.AddScoped<IRepository<CarBrand, Guid>, CarBrandRepository>();
 
             services.AddAutoMapper(typeof(CarProfile), typeof(CustomerProfile), typeof(ReservationProfile));
 

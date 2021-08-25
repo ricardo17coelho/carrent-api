@@ -11,26 +11,26 @@ using Xunit;
 
 namespace CarRent.Test.CarManagement
 {
-    public class TestCarController
+    public class TestCarBrandController
     {
         private readonly IMapper _mapper;
         private readonly ICarService _service;
 
         private readonly Mock<IRepository<Car, Guid>> _repository;
 
-        private readonly CarClass _basicClass = new CarClass()
+        private readonly CarClass _basicClass = new()
         {
             Id = Guid.NewGuid(),
             PricePerDay = 12,
             Type = "Basic"
         };
-        private readonly CarClass _mediumClass = new CarClass()
+        private readonly CarClass _mediumClass = new()
         {
             Id = Guid.NewGuid(),
             PricePerDay = 20,
             Type = "Medium"
         };
-        private readonly CarClass _luxuryClass = new CarClass()
+        private readonly CarClass _luxuryClass = new()
         {
             Id = Guid.NewGuid(),
             PricePerDay = 130,
@@ -38,7 +38,7 @@ namespace CarRent.Test.CarManagement
         };
 
         private readonly List<Car> _cars;
-        public TestCarController()
+        public TestCarBrandController()
         {
 
             var carClasses = new List<CarClass>()
@@ -52,10 +52,10 @@ namespace CarRent.Test.CarManagement
                 new Car()
                 {
                     Id = Guid.NewGuid(),
-                    Brand = "Toyota",
+                    BrandId = Guid.NewGuid(),
                     Class = _basicClass,
                     ClassId = _basicClass.Id,
-                    Type = "PW"
+                    TypeId = Guid.NewGuid()
                 }
             };
             _mapper = new Mapper(new MapperConfiguration(conf =>

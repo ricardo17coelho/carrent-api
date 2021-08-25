@@ -1,4 +1,6 @@
-﻿using Carrent.ReservationManagement.Domain;
+﻿using Carrent.BaseData.CarBrandManagement.Domain;
+using Carrent.BaseData.CarTypeManagement.Domain;
+using Carrent.ReservationManagement.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,9 +16,11 @@ namespace Carrent.CarManagement.Domain
         public Guid ClassId { get; set; }
         public CarClass Class { get; set; }
         [Required]
-        public string Brand { get; set; }
+        public Guid BrandId { get; set; }
+        public CarBrand Brand { get; set; }
         [Required]
-        public string Type { get; set; }
+        public Guid TypeId { get; set; }
+        public CarType Type { get; set; }
         public virtual ICollection<Reservation> Reservations {get; set;}
     }
 }

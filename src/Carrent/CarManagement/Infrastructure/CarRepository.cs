@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Carrent.CarManagement.Infrastructure
 {
@@ -20,12 +19,20 @@ namespace Carrent.CarManagement.Infrastructure
 
         public List<Car> GetAll()
         {
-            return _carRentDbContext.Cars.Include(c => c.Reservations).Include(x => x.Class).ToList();
+            return _carRentDbContext.Cars.Include(car => car.Reservations)
+                .Include(x => x.Class)
+                .Include(car => car.Brand)
+                .Include(car => car.Type)
+                .ToList();
         }
 
         public List<Car> FindById(Guid id)
         {
-            return _carRentDbContext.Cars.Include(x => x.Class).Where(x => x.Id.Equals(id)).ToList();
+            return _carRentDbContext.Cars
+                .Include(car => car.Class).Where(carClass => carClass.Id.Equals(id))
+                .Include(car => car.BrandId).Where(brand => brand.Id.Equals(id))
+                .Include(car => car.TypeId).Where(type => type.Id.Equals(id))
+                .ToList();
         }
 
         public void Insert(Car entity)

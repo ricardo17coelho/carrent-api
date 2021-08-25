@@ -61,7 +61,7 @@ namespace Carrent.CarManagement.Api
         public List<CarResponseDto> Search(string searchTerm)
         {
             return _carService.GetAll()
-                .Where(x => x.Brand.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) || x.Type.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase))
+                //.Where(x => x.BrandId.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) || x.Type.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase))
                 .Select(x => _mapper.Map<CarResponseDto>(x)).ToList();
         }
 
