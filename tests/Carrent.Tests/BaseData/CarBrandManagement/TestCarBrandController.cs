@@ -9,6 +9,8 @@ using Carrent.Common.Interfaces;
 using Carrent.Common.Mapper;
 using Moq;
 using Xunit;
+using System.Linq;
+using FluentAssertions;
 
 namespace CarRent.Test.BaseData.CarBrandManagement
 {
@@ -21,14 +23,17 @@ namespace CarRent.Test.BaseData.CarBrandManagement
 
         private readonly CarBrand _mercedesCarType = new()
         {
+            Id = Guid.NewGuid(),
             Title = "Mercedes"
         };
         private readonly CarBrand _audiCarType = new()
         {
+            Id = Guid.NewGuid(),
             Title = "Audi"
         };
         private readonly CarBrand _bmwCarType = new()
         {
+            Id = Guid.NewGuid(),
             Title = "BMW"
         };
 
@@ -65,16 +70,108 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         [Fact]
         public void TestAdd()
         {
+            // arrange
             var controller = new CarBrandController(_service, _mapper);
-
-            var carToAdd = new CarBrandRequestCreateDto()
+            var carBrandToAdd = new CarBrandRequestCreateDto()
             {
                 Title = "Ferrari"
             };
 
-            controller.Post(carToAdd);
+            //act
+            controller.Post(carBrandToAdd);
 
+            //assert
             _repository.Verify(x => x.Insert(It.IsAny<CarBrand>()));
+        }
+
+        [Fact]
+        public void TestEdit()
+        {
+            //arrange
+            var carBrandToUpdate = new CarBrandRequestEditDto()
+            {
+                Id = Guid.NewGuid(),
+                Title = "Ferrari 2"
+            };
+            var controller = new CarBrandController(_service, _mapper);
+
+            //act
+            controller.Put(carBrandToUpdate.Id, carBrandToUpdate);
+
+            //assert
+            _repository.Verify(x => x.Update(It.IsAny<CarBrand>()));
+        }
+
+        [Fact]
+        public void TestDelete()
+        {
+            //arrange
+            var carBrand = _mercedesCarType;
+
+            //set up the repository’s Delete call
+            _repository.Setup(r => r.Remove(It.IsAny<CarBrand>()));
+
+            //act
+            _service.Delete(carBrand);
+
+            //assert
+            _repository.Verify(r => r.Remove(carBrand));
+        }
+
+        [Fact]
+        public void TestDeleteById()
+        {
+            //arrange
+            var carBrand = _mercedesCarType;
+
+            //set up the repository’s Delete call
+            _repository.Setup(r => r.Remove(carBrand.Id));
+
+            //act
+            var controller = new CarBrandController(_service, _mapper);
+
+            //act
+             controller.Delete(carBrand.Id);
+
+            //assert
+            _repository.Verify(r => r.Remove(carBrand.Id));
+        }
+
+        [Fact]
+        public void TestFindById()
+        {
+            //arrange
+            var carBrandToGet = new CarBrandRequestEditDto()
+            {
+                Id = Guid.NewGuid(),
+                Title = "Ferrari 2"
+            };
+
+            _repository.Setup(x => x.FindById(carBrandToGet.Id));
+
+            var controller = new CarBrandController(_service, _mapper);
+
+            //act
+            var result = controller.Get(carBrandToGet.Id);
+
+            //assert
+            _repository.Verify(r => r.FindById(carBrandToGet.Id));
+        }
+
+
+        [Fact]
+        public void GetAll()
+        {
+            //arrange
+            _repository.Setup(x => x.GetAll()).Returns(_carsBrands);
+            var controller = new CarBrandController(_service, _mapper);
+
+            //act
+            var actionResult = controller.Get();
+            var result = actionResult;
+
+            //assert
+            Assert.Equal(_carsBrands.Count, result.Count);
         }
     }
 }
