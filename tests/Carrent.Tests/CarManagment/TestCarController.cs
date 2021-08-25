@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Carrent.BaseData.CarBrandManagement.Domain;
+using Carrent.BaseData.CarTypeManagement.Domain;
 using Carrent.CarManagement.Api;
 using Carrent.CarManagement.Application;
 using Carrent.CarManagement.Domain;
@@ -37,6 +39,18 @@ namespace CarRent.Test.CarManagement
             Type = "Luxury"
         };
 
+        private readonly CarBrand _ferrariBrand = new()
+        {
+            Id = Guid.NewGuid(),
+            Title = "Ferrari"
+        };
+
+        private readonly CarType _sportsType = new()
+        {
+            Id = Guid.NewGuid(),
+            Title = "Sports"
+        };
+
         private readonly List<Car> _cars;
         public TestCarBrandController()
         {
@@ -52,10 +66,12 @@ namespace CarRent.Test.CarManagement
                 new Car()
                 {
                     Id = Guid.NewGuid(),
-                    BrandId = Guid.NewGuid(),
+                    Brand = _ferrariBrand,
+                    BrandId = _ferrariBrand.Id,
+                    Type = _sportsType,
+                    TypeId = _sportsType.Id,
                     Class = _basicClass,
-                    ClassId = _basicClass.Id,
-                    TypeId = Guid.NewGuid()
+                    ClassId = _basicClass.Id
                 }
             };
             _mapper = new Mapper(new MapperConfiguration(conf =>
@@ -71,16 +87,6 @@ namespace CarRent.Test.CarManagement
             _service = new CarService(_repository.Object);
         }
 
-        //[Fact]
-        //public void TestGetAll()
-        //{
-        //    var controller = new CarController(_service, _mapper);
-
-        //    var result = controller.Get();
-
-        //    result.Should().NotBeEmpty().And.BeEquivalentTo(_cars, o => o.ExcludingMissingMembers());
-        //}
-
         [Fact]
         public void TestAdd()
         {
@@ -88,9 +94,9 @@ namespace CarRent.Test.CarManagement
 
             var carToAdd = new CarRequestCreateDto()
             {
-                Brand = "Hyundai",
-                ClassId = _luxuryClass.Id,
-                Type = "PW"
+                BrandId = _ferrariBrand.Id,
+                TypeId = _sportsType.Id,
+                ClassId = _luxuryClass.Id
             };
 
             controller.Post(carToAdd);
