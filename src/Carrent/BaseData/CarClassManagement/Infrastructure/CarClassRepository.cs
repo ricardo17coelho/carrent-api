@@ -1,12 +1,11 @@
-﻿using Carrent.CarManagement.Domain;
+﻿using Carrent.BaseData.CarClassManagement.Domain;
 using Carrent.Common.Context;
 using Carrent.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Carrent.CarManagement.Infrastructure
+namespace Carrent.BaseData.CarClassManagement.Infrastructure
 {
     public class CarClassRepository : IRepository<CarClass, Guid>
     {

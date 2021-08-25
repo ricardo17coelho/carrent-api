@@ -1,4 +1,5 @@
 ﻿using Carrent.BaseData.CarBrandManagement.Domain;
+using Carrent.BaseData.CarClassManagement.Domain;
 using Carrent.BaseData.CarTypeManagement.Domain;
 using Carrent.ReservationManagement.Domain;
 using System;

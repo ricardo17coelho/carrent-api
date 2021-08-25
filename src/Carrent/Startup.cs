@@ -1,6 +1,9 @@
 using Carrent.BaseData.CarBrandManagement.Application;
 using Carrent.BaseData.CarBrandManagement.Domain;
 using Carrent.BaseData.CarBrandManagement.Infrastructure;
+using Carrent.BaseData.CarClassManagement.Application;
+using Carrent.BaseData.CarClassManagement.Domain;
+using Carrent.BaseData.CarClassManagement.Infrastructure;
 using Carrent.BaseData.CarTypeManagement.Domain;
 using Carrent.BaseData.CarTypeManagement.Infrastructure;
 using Carrent.BaseData.CarTypesManagement.Application;

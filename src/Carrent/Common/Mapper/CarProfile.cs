@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Carrent.BaseData.CarBrandManagement.Domain;
 using Carrent.BaseData.CarBrandManagement.Models;
+using Carrent.BaseData.CarClassManagement.Api;
+using Carrent.BaseData.CarClassManagement.Domain;
 using Carrent.BaseData.CarTypeManagement.Domain;
 using Carrent.BaseData.CarTypeManagement.Models;
 using Carrent.CarManagement.Api;

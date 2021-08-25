@@ -1,15 +1,14 @@
-﻿using Carrent.CarManagement.Application;
+﻿using Carrent.BaseData.CarClassManagement.Application;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Carrent.CarManagement.Domain;
+using Carrent.BaseData.CarClassManagement.Domain;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Carrent.CarManagement.Api
+namespace Carrent.BaseData.CarClassManagement.Api
 {
     [Route("api/[controller]")]
     [ApiController]

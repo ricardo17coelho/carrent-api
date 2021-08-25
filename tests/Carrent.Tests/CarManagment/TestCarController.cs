@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Carrent.BaseData.CarBrandManagement.Domain;
+using Carrent.BaseData.CarClassManagement.Domain;
 using Carrent.BaseData.CarTypeManagement.Domain;
 using Carrent.CarManagement.Api;
 using Carrent.CarManagement.Application;

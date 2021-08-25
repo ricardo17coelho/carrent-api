@@ -1,11 +1,9 @@
-﻿using Carrent.CarManagement.Domain;
+﻿using Carrent.BaseData.CarClassManagement.Domain;
 using Carrent.Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Carrent.CarManagement.Application
+namespace Carrent.BaseData.CarClassManagement.Application
 {
     public class CarClassService : ICarClassService
     {
@@ -26,9 +24,9 @@ namespace Carrent.CarManagement.Application
             return _repository.FindById(id);
         }
 
-        public void Add(CarClass entity)
+        public void Add(CarClass carClass)
         {
-            _repository.Insert(entity);
+            _repository.Insert(carClass);
         }
 
         public void DeleteById(Guid id)
