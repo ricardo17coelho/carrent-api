@@ -9,8 +9,6 @@ using Carrent.Common.Interfaces;
 using Carrent.Common.Mapper;
 using Moq;
 using Xunit;
-using System.Linq;
-using FluentAssertions;
 
 namespace CarRent.Test.BaseData.CarBrandManagement
 {
@@ -68,7 +66,7 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         }
 
         [Fact]
-        public void TestAdd()
+        public void CarBrandController_Add_VerifyItemsIsAdded()
         {
             // arrange
             var controller = new CarBrandController(_service, _mapper);
@@ -85,7 +83,7 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         }
 
         [Fact]
-        public void TestEdit()
+        public void CarBrandController_Edit_VerifyItemsIsUpdated()
         {
             //arrange
             var carBrandToUpdate = new CarBrandRequestEditDto()
@@ -103,7 +101,7 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         }
 
         [Fact]
-        public void TestDelete()
+        public void CarBrandController_Delete_VerifyServiceIfWasCalled()
         {
             //arrange
             var carBrand = _mercedesCarType;
@@ -119,7 +117,7 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         }
 
         [Fact]
-        public void TestDeleteById()
+        public void CarBrandController_DeleteById_VerifyIfServiceWasCalled()
         {
             //arrange
             var carBrand = _mercedesCarType;
@@ -138,7 +136,7 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         }
 
         [Fact]
-        public void TestFindById()
+        public void CarBrandController_FindById_ReturnsCarBrand()
         {
             //arrange
             var carBrandToGet = new CarBrandRequestEditDto()
@@ -160,7 +158,7 @@ namespace CarRent.Test.BaseData.CarBrandManagement
 
 
         [Fact]
-        public void GetAll()
+        public void CarBrandController_GetAll_ReturnsList()
         {
             //arrange
             _repository.Setup(x => x.GetAll()).Returns(_carsBrands);
