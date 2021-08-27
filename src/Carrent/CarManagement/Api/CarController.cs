@@ -76,6 +76,7 @@ namespace Carrent.CarManagement.Api
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody] CarRequestEditDto car)
         {
+            car.Id = id;
             var c = _mapper.Map<Car>(car);
             _carService.Update(c);
         }
