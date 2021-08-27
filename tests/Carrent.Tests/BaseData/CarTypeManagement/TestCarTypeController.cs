@@ -10,7 +10,7 @@ using Carrent.Common.Mapper;
 using Moq;
 using Xunit;
 
-namespace CarRent.Test.BaseData.CarBrandManagement
+namespace CarRent.Test.BaseData.CarTypeManagement
 {
     public class TestCarTypeController
     {
@@ -63,18 +63,110 @@ namespace CarRent.Test.BaseData.CarBrandManagement
         }
 
         [Fact]
-        public void TestAdd()
+        public void CarTypeController_Add_VerifyItemsIsAdded()
         {
+            // arrange
             var controller = new CarTypeController(_service, _mapper);
-
-            var carToAdd = new CarTypeRequestCreateDto()
+            var carBrandToAdd = new CarTypeRequestCreateDto()
             {
-                Title = "Electric"
+                Title = "SUV"
             };
 
-            controller.Post(carToAdd);
+            //act
+            controller.Post(carBrandToAdd);
 
+            //assert
             _repository.Verify(x => x.Insert(It.IsAny<CarType>()));
+        }
+
+        [Fact]
+        public void CarTypeController_Edit_VerifyItemsIsUpdated()
+        {
+            //arrange
+            var carBrandToUpdate = new CarTypeRequestEditDto()
+            {
+                Id = Guid.NewGuid(),
+                Title = "SUV"
+            };
+            var controller = new CarTypeController(_service, _mapper);
+
+            //act
+            controller.Put(carBrandToUpdate.Id, carBrandToUpdate);
+
+            //assert
+            _repository.Verify(x => x.Update(It.IsAny<CarType>()));
+        }
+
+        [Fact]
+        public void CarTypeController_Delete_VerifyServiceIfWasCalled()
+        {
+            //arrange
+            var carBrand = _suvVarType;
+
+            //set up the repository’s Delete call
+            _repository.Setup(r => r.Remove(It.IsAny<CarType>()));
+
+            //act
+            _service.Delete(carBrand);
+
+            //assert
+            _repository.Verify(r => r.Remove(carBrand));
+        }
+
+        [Fact]
+        public void CarTypeController_DeleteById_VerifyIfServiceWasCalled()
+        {
+            //arrange
+            var carBrand = _suvVarType;
+
+            //set up the repository’s Delete call
+            _repository.Setup(r => r.Remove(carBrand.Id));
+
+            //act
+            var controller = new CarTypeController(_service, _mapper);
+
+            //act
+            controller.Delete(carBrand.Id);
+
+            //assert
+            _repository.Verify(r => r.Remove(carBrand.Id));
+        }
+
+        [Fact]
+        public void CarTypeController_FindById_ReturnsCarBrand()
+        {
+            //arrange
+            var carBrandToGet = new CarTypeRequestEditDto()
+            {
+                Id = Guid.NewGuid(),
+                Title = "SUV"
+            };
+
+            _repository.Setup(x => x.FindById(carBrandToGet.Id));
+
+            var controller = new CarTypeController(_service, _mapper);
+
+            //act
+            var result = controller.Get(carBrandToGet.Id);
+
+            //assert
+            _repository.Verify(r => r.FindById(carBrandToGet.Id));
+        }
+
+
+        [Fact]
+        public void CarTypeController_GetAll_ReturnsList()
+        {
+            //arrange
+            _repository.Setup(x => x.GetAll()).Returns(_carTypes);
+            var controller = new CarTypeController(_service, _mapper);
+
+            //act
+            var actionResult = controller.Get();
+            var result = actionResult;
+
+            //assert
+            Assert.Equal(_carTypes.Count, result.Count);
         }
     }
 }
