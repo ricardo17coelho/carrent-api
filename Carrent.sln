@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FDED90B3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09909693-62A0-440A-90B4-DABDF8590D81}"
 	ProjectSection(SolutionItems) = preProject
+		code-coverage.runsettings = code-coverage.runsettings
 		test.runsettings = test.runsettings
 	EndProjectSection
 EndProject

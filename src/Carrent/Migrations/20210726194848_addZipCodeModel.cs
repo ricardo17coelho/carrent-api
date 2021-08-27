@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Carrent.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class addZipCodeModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
