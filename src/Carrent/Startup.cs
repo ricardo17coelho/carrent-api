@@ -13,6 +13,9 @@ using Carrent.CarManagement.Infrastructure;
 using Carrent.Common.Context;
 using Carrent.Common.Interfaces;
 using Carrent.Common.Mapper;
+using Carrent.ContractManagement.Application;
+using Carrent.ContractManagement.Domain;
+using Carrent.ContractManagement.Infrastructure;
 using Carrent.CustomerManagement.Application;
 using Carrent.CustomerManagement.Domain;
 using Carrent.CustomerManagement.Infrastructure;
@@ -20,7 +23,9 @@ using Carrent.ReservationManagement.Application;
 using Carrent.ReservationManagement.Domain;
 using Carrent.ReservationManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -66,7 +71,11 @@ namespace Carrent
             services.AddScoped<IRepository<CarType, Guid>, CarTypeRepository>();
 
             services.AddTransient<ICarBrandService, CarBrandService>();
-            services.AddScoped<IRepository<CarBrand, Guid>, CarBrandRepository>();
+            services.AddScoped<IRepository<CarBrand, Guid>, CarBrandRepository>();            
+            
+            services.AddTransient<IContractService, ContractService>();
+            services.AddScoped<IRepository<RentalContract, Guid>, ContractRepository>();
+            services.AddScoped<ReservationRepository>();
 
             services.AddAutoMapper(typeof(CarProfile), typeof(CustomerProfile), typeof(ReservationProfile));
 
@@ -79,6 +88,7 @@ namespace Carrent
                     Description = "A simple example ASP.NET Core Web API",
                     Contact = new OpenApiContact { Name = "Ricardo Coelho", Email = "devel@rmorgado.ch" }
                 });
+                //File.WriteAllText("swagger.json", c.ToString());
             });
 
             // VARIANT 1
@@ -103,6 +113,15 @@ namespace Carrent
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Carrent v1"));
             }
+
+            app.UseExceptionHandler(a => a.Run(async context =>
+            {
+                var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                var exception = exceptionHandlerPathFeature.Error;
+
+                await context.Response.WriteAsJsonAsync(new { error = exception.Message });
+            }));
+
 
             app.UseHttpsRedirection();
 

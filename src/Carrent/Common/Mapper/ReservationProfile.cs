@@ -13,7 +13,7 @@ namespace Carrent.Common.Mapper
         public ReservationProfile()
         {
             CreateMap<Reservation, ReservationResponseDto>()
-                //.ForMember(dest => dest.CarName, opt => opt.MapFrom(src => src.Car.BrandId + ' ' + src.Car.Class.Type))
+                .ForMember(dest => dest.CarName, opt => opt.MapFrom(src => src.Car.Brand.Title + ' ' + src.Car.Model))
                 .ForMember(dest => dest.CustomerFullName, opt => opt.MapFrom(src => src.Customer.Firstname + ' ' + src.Customer.Lastname))
                 .AfterMap((src, dest) => {
                     var PricePerDay = src.Car.Class.PricePerDay;

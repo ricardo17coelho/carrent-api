@@ -53,5 +53,24 @@ namespace Carrent.ReservationManagement.Infrastructure
             _carRentDbContext.Remove(entity);
             _carRentDbContext.SaveChanges();
         }
+
+        public void SetState(Reservation reservation, ReservationStatus status)
+        {
+            if (reservation.Status == ReservationStatus.Rent) return;
+            reservation.Status = status;
+            Update(reservation);
+        }
+
+        public void SetStatusRent(Reservation reservation)
+        {
+            ReservationStatus status = ReservationStatus.Rent;
+            SetState(reservation, status);
+        }
+
+        public void SetStatusReserved(Reservation reservation)
+        {
+            ReservationStatus status = ReservationStatus.Reserved;
+            SetState(reservation, status);
+        }
     }
 }
