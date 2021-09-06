@@ -126,23 +126,13 @@ _For more examples, please refer to the [Documentation][docs-url]_
 ### development
 
 ### development
-install mkdocs
-```sh
-pip install mkdocs
+## Load Tests
 ```
-install mkdocs material template
-```sh
-pip install mkdocs-material
+choco install k6
 ```
-serve locally
-```sh
-mkdocs serve
 ```
-Publishing to github
-```sh
-mkdocs gh-deploy --force
+k6 run source/tests/CarRentApi.Tests/LoadTests/Script.js
 ```
-
 
 <!-- ROADMAP -->
 ## 🚩Roadmap
